@@ -15,13 +15,12 @@
         <script src="components/modernizr/modernizr.js"></script>
         <script src="components/gl-matrix/dist/gl-matrix-min.js"></script>
         <!-- endbuild -->
-        <script type="text/javascript" src="glMatrix-0.9.5.min.js"></script>
 
         <script id="shader-fs" type="x-shader/x-fragment">
             precision mediump float;
 
             void main(void) {
-            gl_FragColor = vec4(1.0, 1.0, 1.0, 1.0);
+                gl_FragColor = vec4(1.0, 1.0, 1.0, 1.0);
             }
         </script>
 
@@ -32,7 +31,7 @@
             uniform mat4 uPMatrix;
 
             void main(void) {
-            gl_Position = uPMatrix * uMVMatrix * vec4(aVertexPosition, 1.0);
+                gl_Position = uPMatrix * uMVMatrix * vec4(aVertexPosition, 1.0);
             }
         </script>
 
@@ -122,6 +121,8 @@
                 gl.uniformMatrix4fv(shaderProgram.mvMatrixUniform, false, mvMatrix);
             }
 
+
+
             var triangleVertexPositionBuffer;
             var squareVertexPositionBuffer;
 
@@ -159,14 +160,14 @@
 
                 mat4.identity(mvMatrix);
 
-                mat4.translate(mvMatrix, [-1.5, 0.0, -7.0]);
+                mat4.translate(mvMatrix, [-1.5, 0.0, -7.0], vec3.create());
                 gl.bindBuffer(gl.ARRAY_BUFFER, triangleVertexPositionBuffer);
                 gl.vertexAttribPointer(shaderProgram.vertexPositionAttribute, triangleVertexPositionBuffer.itemSize, gl.FLOAT, false, 0, 0);
                 setMatrixUniforms();
                 gl.drawArrays(gl.TRIANGLES, 0, triangleVertexPositionBuffer.numItems);
 
 
-                mat4.translate(mvMatrix, [3.0, 0.0, 0.0]);
+                mat4.translate(mvMatrix, [3.0, 0.0, 0.0], vec3.create());
                 gl.bindBuffer(gl.ARRAY_BUFFER, squareVertexPositionBuffer);
                 gl.vertexAttribPointer(shaderProgram.vertexPositionAttribute, squareVertexPositionBuffer.itemSize, gl.FLOAT, false, 0, 0);
                 setMatrixUniforms();
@@ -176,7 +177,7 @@
 
 
             function webGLStart() {
-                var canvas = document.getElementById("lesson01-canvas");
+                var canvas = document.getElementById("pentagon-canvas");
                 initGL(canvas);
                 initShaders();
                 initBuffers();
@@ -187,7 +188,9 @@
                 drawScene();
             }
 
+
         </script>
+
     </head>
     <body onload="webGLStart();">
         <canvas id="pentagon-canvas" style="border: none;" width="500" height="500"></canvas>
