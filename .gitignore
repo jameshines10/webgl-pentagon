@@ -1,0 +1,10 @@
+node_modules
+temp
+dist
+.sass-cache
+app/components
+.bowerrc
+.editorconfig
+.idea/
+.jshintrc
+.gitattributes
